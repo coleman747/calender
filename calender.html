@@ -32,14 +32,14 @@
       const calendarEl = document.getElementById('calendar');
 
       const calendar = new FullCalendar.Calendar(calendarEl, {
-        plugins: [FullCalendarResourceTimeline],
+        plugins: [FullCalendar.ResourceTimelinePlugin],  // ← ここを修正
         initialView: 'resourceTimelineWeek',
         resourceAreaHeaderContent: '施設名',
         resources: [
           { id: '101', title: '101号室' },
           { id: '102', title: '102号室' }
         ],
-        events: 'events.json',  // GitHub Pagesと同じフォルダに置く
+        events: 'events.json',
         slotMinTime: '08:00:00',
         slotMaxTime: '20:00:00',
         headerToolbar: {
