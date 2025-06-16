@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Airbnb予約タイムライン</title>
+
+  <!-- ✅ FullCalendar v6.1.10 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.10/index.global.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fullcalendar/resource-timeline@6.1.10/index.global.min.css">
+
+  <!-- ✅ FullCalendar v6.1.10 JS（順番に注意） -->
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/core@6.1.10/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/resource-common@6.1.10/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/resource-timeline@6.1.10/index.global.min.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    #calendar {
+      height: 100vh;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="calendar"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const calendarEl = document.getElementById('calendar');
+
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        plugins: [FullCalendarResourceTimeline],
+        initialView: 'resourceTimelineWeek',
+        resourceAreaHeaderContent: '施設名',
+        resources: [
+          { id: '101', title: '101号室' },
+          { id: '102', title: '102号室' }
+        ],
+        events: 'events.json',  // GitHub Pagesと同じフォルダに置く
+        slotMinTime: '08:00:00',
+        slotMaxTime: '20:00:00',
+        headerToolbar: {
+          left: 'prev,next today',
+          center: 'title',
+          right: 'resourceTimelineDay,resourceTimelineWeek'
+        },
+        locale: 'ja'
+      });
+
+      calendar.render();
+    });
+  </script>
+</body>
+</html>
